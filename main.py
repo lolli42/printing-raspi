@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import signalHandler
 
 class Main:
-    _pinInputFeederSwitch = 5 # Active LOW!
+    _pinInputFeederSwitch = 5 # Active LOW
     _pinInputFilamentRunOutSwitch = 3
     _pinInputPanicAndFireSwitch = 11
     _pinInputSmokeMaintenance = 12
@@ -40,6 +40,7 @@ class Main:
         GPIO.output(self._pinOutputPwmaLedStrip, 0)
         GPIO.output(self._pinOutputStepperDriverStandby, 1)
 
+        # pwm objects for feeder and led strip
         self._feederMotor = GPIO.PWM(self._pinOutputPwmaFeederMotor, 100)
         self._ledStrip = GPIO.PWM(self._pinOutputPwmaLedStrip, 100)
 
@@ -51,7 +52,7 @@ class Main:
                 GPIO.cleanup()
                 break
 
-            # Start / stop feeder motor if switch input is LOW
+            # Start feeder motor if switch input is LOW, stop if HIGH
             if not bool(GPIO.input(self._pinInputFeederSwitch)):
                 self._feederMotor.start(80)
             else:

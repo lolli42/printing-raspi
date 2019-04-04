@@ -1,0 +1,19 @@
+{
+    "FAUXMO": {
+        "ip_address": "auto"
+    },
+    "PLUGINS": {
+        "CommandLinePlugin": {
+            "path": "/home/pi/printing-raspi/fauxmo/commandlineplugin.py",
+            "DEVICES": [
+                {
+                    "name": "Printer Licht",
+                    "port": 12340,
+                    "on_cmd": "python /home/pi/printing-raspi/fauxmo/printer-light-on.py",
+                    "off_cmd": "python /home/pi/printing-raspi/fauxmo/printer-light-off.py",
+                    "state_cmd": "ls /home/pi/printing-raspi/fauxmo/printer-light-is-on.txt"
+                }
+            ]
+        }
+    }
+}
